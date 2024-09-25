@@ -8,18 +8,13 @@ import Logo from "../assets/Svgs/star_white_48dp.svg";
 const Section = styled.section`
   min-height: 100vh;
   width: 100%;
-  /* margin: 5rem auto; */
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
-
-
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.text};
-
   position: relative;
 `;
 
@@ -84,6 +79,60 @@ const FooterComponent = styled(motion.footer)`
   }
 `;
 
+const FormContainer = styled(motion.form)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 80vw;
+  background-color: ${(props) => props.theme.body};
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 48em) {
+    width: 90vw;
+  }
+
+  label {
+    font-size: ${(props) => props.theme.fontlg};
+    margin-bottom: 0.5rem;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid ${(props) => props.theme.text};
+    background-color: transparent;
+    color: ${(props) => props.theme.text};
+    font-size: ${(props) => props.theme.fontmd};
+    border-radius: 5px;
+    outline: none;
+
+    &:focus {
+      border-color: ${(props) => props.theme.text};
+    }
+  }
+
+  button {
+    padding: 1rem 2rem;
+    background-color: ${(props) => props.theme.text};
+    color: ${(props) => props.theme.body};
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: ${(props) => props.theme.textHover};
+      transform: scale(1.05);
+    }
+  }
+`;
+
 const Bottom = styled.div`
   padding: 0.5rem 0;
   margin: 0 4rem;
@@ -115,7 +164,6 @@ const Footer = () => {
 
   const handleScroll = (id) => {
     let elem = document.querySelector(id);
-    // console.log(elem);
     scroll.scrollTo(elem, {
       offset: "-100",
       duration: "2000",
@@ -138,6 +186,39 @@ const Footer = () => {
           Artem 
         </h3>
       </LogoContainer>
+
+      {/* Contact Form */}
+      <FormContainer
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false }}
+        transition={{ duration: 1.5 }}
+      >
+        <label htmlFor="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" />
+
+        <label htmlFor="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your email" />
+
+        <label htmlFor="videoLink">Video Link</label>
+        <input
+          type="url"
+          id="videoLink"
+          name="videoLink"
+          placeholder="URL of your video"
+        />
+
+        <label htmlFor="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          placeholder="Your message"
+        ></textarea>
+
+        <button type="submit">Send Message</button>
+      </FormContainer>
+
       <FooterComponent
         initial={{ y: "-400px" }}
         whileInView={{ y: 0 }}
@@ -146,7 +227,6 @@ const Footer = () => {
           duration: 1.5,
         }}
       >
-
         <Bottom>
           <span
             data-scroll
