@@ -165,7 +165,7 @@ const Footer = () => {
               target={"_blank"}
               rel="dofollow noreferrer"
             >
-              Gauravkarthik
+              Toby
             </a>
           </span>
         </Bottom>
